@@ -8,22 +8,23 @@
 *
 *
 *******************************************************************************
-* (c) (2020), Cypress Semiconductor Corporation. All rights reserved.
-*******************************************************************************
-* This software, including source code, documentation and related materials
-* ("Software"), is owned by Cypress Semiconductor Corporation or one of its
-* subsidiaries ("Cypress") and is protected by and subject to worldwide patent
-* protection (United States and foreign), United States copyright laws and
-* international treaty provisions. Therefore, you may use this Software only
-* as provided in the license agreement accompanying the software package from
-* which you obtained this Software ("EULA").
+* Copyright 2020-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
+* This software, including source code, documentation and related
+* materials ("Software") is owned by Cypress Semiconductor Corporation
+* or one of its affiliates ("Cypress") and is protected by and subject to
+* worldwide patent protection (United States and foreign),
+* United States copyright laws and international treaty provisions.
+* Therefore, you may use this Software only as provided in the license
+* agreement accompanying the software package from which you
+* obtained this Software ("EULA").
 * If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software source
-* code solely for use in connection with Cypress's integrated circuit products.
-* Any reproduction, modification, translation, compilation, or representation
-* of this Software except as specified above is prohibited without the express
-* written permission of Cypress.
+* non-transferable license to copy, modify, and compile the Software
+* source code solely for use in connection with Cypress's
+* integrated circuit products.  Any reproduction, modification, translation,
+* compilation, or representation of this Software except as specified
+* above is prohibited without the express written permission of Cypress.
 *
 * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
 * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
@@ -34,9 +35,9 @@
 * not authorize its products for use in any products where a malfunction or
 * failure of the Cypress product may reasonably be expected to result in
 * significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer of such
-* system or application assumes all risk of such use and in doing so agrees to
-* indemnify Cypress against all liability.
+* including Cypress's product in a High Risk Product, the manufacturer
+* of such system or application assumes all risk of such use and in doing
+* so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
 
 #include "cy_pdl.h"
@@ -50,7 +51,8 @@
 
 #if !defined (TARGET_CY8CKIT_062_BLE) && !defined (TARGET_CY8CPROTO_063_BLE) && \
     !defined (TARGET_CY8CKIT_062_WIFI_BT) && !defined (TARGET_CY8CKIT_062S2_43012) && \
-    !defined (TARGET_CY8CPROTO_062_4343W) && !defined (TARGET_CY8CKIT_064B0S2_4343W)
+    !defined (TARGET_CY8CPROTO_062_4343W) && !defined (TARGET_CY8CKIT_064B0S2_4343W) && \
+    !defined (TARGET_CY8CKIT_062S4)
     #error Unsupported kit. Choose another kit.
 #endif
 
@@ -60,10 +62,17 @@
 /* Master Clock (MCLK) Settings */
 #define MCLK_FREQ_HZ        4095000u    /* in Hz */
 #define MCLK_DUTY_CYCLE     50.0f       /* in %  */
+
 /* PWM MCLK Pin */
+#if defined (TARGET_CY8CKIT_062S4)
+#define MCLK_PIN            P10_0
+#else
 #define MCLK_PIN            P9_6
+#endif
+
 /* Debounce delay for the button */
 #define DEBOUNCE_DELAY_MS   10u         /* in ms */
+#define I2S_PRIORITY 7UL
 
 /*******************************************************************************
 * Function Prototypes
@@ -81,13 +90,6 @@ cyhal_pwm_t mclk_pwm;
 stc_i2s_master_config_t i2s_config = 
 {
     .word_length = 16
-};
-
-/* I2S Master Interrupt */
-cy_stc_sysint_t i2s_master_intr =
-{
-    .intrSrc = SPI_I2S_IRQ,
-    .intrPriority = 7UL
 };
 
 /* I2S Master Context */
@@ -132,8 +134,8 @@ int main(void)
     cyhal_pwm_start(&mclk_pwm);
 
     /* Setup I2S/SPI Interrupt */
-    Cy_SysInt_Init(&i2s_master_intr, i2s_interrupt_handler);
-    NVIC_EnableIRQ(i2s_master_intr.intrSrc);
+    cyhal_system_set_isr(SPI_I2S_IRQ, SPI_I2S_IRQ, I2S_PRIORITY, i2s_interrupt_handler);
+    NVIC_EnableIRQ(SPI_I2S_IRQ);
 
     /* Initialize the I2S Master */
     I2S_Master_Init(SPI_I2S_HW, SMARTIO_HW, &i2s_config, &i2s_context);
