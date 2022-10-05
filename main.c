@@ -8,7 +8,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2020-2021, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2020-2022, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -49,14 +49,6 @@
 #include "wave.h"
 #include "i2s_master.h"
 
-#if !defined (TARGET_CY8CKIT_062_BLE) && !defined (TARGET_CY8CPROTO_063_BLE) && \
-    !defined (TARGET_CY8CKIT_062_WIFI_BT) && !defined (TARGET_CY8CKIT_062S2_43012) && \
-    !defined (TARGET_CY8CPROTO_062_4343W) && !defined (TARGET_CY8CKIT_064B0S2_4343W) && \
-    !defined (TARGET_CY8CKIT_062S4) && !defined (TARGET_CY8CEVAL_062S2) &&\
-    !defined (TARGET_CY8CEVAL_062S2_LAI_4373M2)
-    #error Unsupported kit. Choose another kit.
-#endif
-
 /*******************************************************************************
 * Macros
 ********************************************************************************/
@@ -65,11 +57,7 @@
 #define MCLK_DUTY_CYCLE     50.0f       /* in %  */
 
 /* PWM MCLK Pin */
-#if defined (TARGET_CY8CKIT_062S4) || defined (TARGET_CY8CEVAL_062S2) || defined (TARGET_CY8CEVAL_062S2_LAI_4373M2)
 #define MCLK_PIN            P5_6
-#else
-#define MCLK_PIN            P9_6
-#endif
 
 /* Debounce delay for the button */
 #define DEBOUNCE_DELAY_MS   10u         /* in ms */
@@ -114,7 +102,7 @@ int main(void)
     cy_rslt_t result;
 
     /* Initialize the device and board peripherals */
-    result = cybsp_init() ;
+    result = cybsp_init();
     if (result != CY_RSLT_SUCCESS)
     {
         CY_ASSERT(0);
