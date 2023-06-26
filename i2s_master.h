@@ -5,7 +5,7 @@
 *              the I2S Master implementation using the SPI and Smart I/O.
 *
 *******************************************************************************
-* Copyright 2020-2022, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2020-2023, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related

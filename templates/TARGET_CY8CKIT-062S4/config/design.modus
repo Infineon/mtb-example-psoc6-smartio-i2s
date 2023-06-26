@@ -332,7 +332,7 @@
                     <Alias value="CYBSP_A8"/>
                     <Alias value="CYBSP_J2_2"/>
                     <Personality template="pin" version="3.0">
-                        <Param id="DriveModes" value="CY_GPIO_DM_ANALOG"/>
+                        <Param id="DriveModes" value="CY_GPIO_DM_STRONG_IN_OFF"/>
                         <Param id="initialState" value="1"/>
                         <Param id="nonSec" value="1"/>
                         <Param id="vtrip" value="CY_GPIO_VTRIP_CMOS"/>
@@ -347,12 +347,8 @@
                 <Block location="ioss[0].port[9].pin[1]">
                     <Alias value="CYBSP_A9"/>
                     <Alias value="CYBSP_J2_4"/>
-                    <Alias value="CYBSP_A9"/>
-                    <Alias value="CYBSP_J2_4"/>
                 </Block>
                 <Block location="ioss[0].port[9].pin[2]">
-                    <Alias value="CYBSP_A12"/>
-                    <Alias value="CYBSP_J2_10"/>
                     <Alias value="CYBSP_A12"/>
                     <Alias value="CYBSP_J2_10"/>
                     <Personality template="pin" version="3.0">
@@ -369,10 +365,6 @@
                     </Personality>
                 </Block>
                 <Block location="ioss[0].port[9].pin[3]">
-                    <Alias value="CYBSP_A13"/>
-                    <Alias value="CYBSP_J2_12"/>
-                    <Alias value="CYBSP_CSD_SLD0"/>
-                    <Alias value="CYBSP_CS_SLD0"/>
                     <Alias value="CYBSP_A13"/>
                     <Alias value="CYBSP_J2_12"/>
                     <Alias value="CYBSP_CSD_SLD0"/>
@@ -552,6 +544,7 @@
                     <Personality template="fll" version="4.0">
                         <Param id="configuration" value="auto"/>
                         <Param id="desiredFrequency" value="100.000"/>
+                        <Param id="enableOutputDivider" value="false"/>
                     </Personality>
                 </Block>
                 <Block location="srss[0].clock[0].hfclk[0]">
