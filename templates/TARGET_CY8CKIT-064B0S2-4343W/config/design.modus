@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration app="BACKEND" formatVersion="13" lastSavedWith="Configurator Backend" lastSavedWithVersion="3.0.0" toolsPackage="ModusToolbox 3.0.0" xmlns="http://cypress.com/xsd/cydesignfile_v4">
+<Configuration app="BACKEND" formatVersion="13" lastSavedWith="Configurator Backend" lastSavedWithVersion="3.10.0" toolsPackage="ModusToolbox 3.1.0" xmlns="http://cypress.com/xsd/cydesignfile_v4">
     <Devices>
         <Device mpn="CYB0644ABZI-S2D44">
             <BlockConfig>
@@ -583,18 +583,18 @@
                 </Block>
                 <Block location="ioss[0].port[9].smartio[0]">
                     <Alias value="SMARTIO"/>
-                    <Personality template="smartio" version="3.0">
+                    <Personality template="smartio" version="4.0">
                         <Param id="SmartIOConfigurator" value="0"/>
                         <Param id="clkSrc" value="CY_SMARTIO_CLK_DIVACT"/>
                         <Param id="lutEn0" value="true"/>
-                        <Param id="lutEn1" value="false"/>
+                        <Param id="lutEn1" value="true"/>
                         <Param id="lutEn2" value="true"/>
                         <Param id="lutEn3" value="true"/>
                         <Param id="lutEn4" value="false"/>
                         <Param id="lutEn5" value="false"/>
                         <Param id="lutEn6" value="false"/>
                         <Param id="lutEn7" value="false"/>
-                        <Param id="duEn" value="false"/>
+                        <Param id="duEn" value="true"/>
                         <Param id="hldOvr" value="false"/>
                         <Param id="ioMode0" value="CY_SMARTIO_OUTPUT"/>
                         <Param id="ioMode1" value="CY_SMARTIO_BYPASS"/>
@@ -606,32 +606,32 @@
                         <Param id="ioMode7" value="CY_SMARTIO_BYPASS"/>
                         <Param id="chipMode0" value="CY_SMARTIO_ASYNC_INPUT"/>
                         <Param id="chipMode1" value="CY_SMARTIO_BYPASS"/>
-                        <Param id="chipMode2" value="CY_SMARTIO_ASYNC_INPUT"/>
-                        <Param id="chipMode3" value="CY_SMARTIO_ASYNC_INPUT"/>
+                        <Param id="chipMode2" value="CY_SMARTIO_SYNC_INPUT"/>
+                        <Param id="chipMode3" value="CY_SMARTIO_SYNC_INPUT"/>
                         <Param id="chipMode4" value="CY_SMARTIO_BYPASS"/>
                         <Param id="chipMode5" value="CY_SMARTIO_BYPASS"/>
                         <Param id="chipMode6" value="CY_SMARTIO_BYPASS"/>
                         <Param id="chipMode7" value="CY_SMARTIO_BYPASS"/>
                         <Param id="lut0Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
-                        <Param id="lut0Map" value="0"/>
+                        <Param id="lut0Map" value="128"/>
                         <Param id="lut0Tr0" value="CY_SMARTIO_LUTTR_CHIP0"/>
                         <Param id="lut0Tr1" value="CY_SMARTIO_LUTTR_CHIP0"/>
                         <Param id="lut0Tr2" value="CY_SMARTIO_LUTTR_CHIP0"/>
                         <Param id="lut1Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
-                        <Param id="lut1Map" value="0"/>
-                        <Param id="lut1Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
-                        <Param id="lut1Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
-                        <Param id="lut1Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
-                        <Param id="lut2Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
-                        <Param id="lut2Map" value="0"/>
+                        <Param id="lut1Map" value="128"/>
+                        <Param id="lut1Tr0" value="CY_SMARTIO_LUTTR_CHIP3"/>
+                        <Param id="lut1Tr1" value="CY_SMARTIO_LUTTR_CHIP3"/>
+                        <Param id="lut1Tr2" value="CY_SMARTIO_LUTTR_CHIP3"/>
+                        <Param id="lut2Opcode" value="CY_SMARTIO_LUTOPC_GATED_OUT"/>
+                        <Param id="lut2Map" value="128"/>
                         <Param id="lut2Tr0" value="CY_SMARTIO_LUTTR_CHIP2"/>
                         <Param id="lut2Tr1" value="CY_SMARTIO_LUTTR_CHIP2"/>
                         <Param id="lut2Tr2" value="CY_SMARTIO_LUTTR_CHIP2"/>
-                        <Param id="lut3Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
-                        <Param id="lut3Map" value="0"/>
-                        <Param id="lut3Tr0" value="CY_SMARTIO_LUTTR_CHIP3"/>
-                        <Param id="lut3Tr1" value="CY_SMARTIO_LUTTR_CHIP3"/>
-                        <Param id="lut3Tr2" value="CY_SMARTIO_LUTTR_CHIP3"/>
+                        <Param id="lut3Opcode" value="CY_SMARTIO_LUTOPC_GATED_OUT"/>
+                        <Param id="lut3Map" value="90"/>
+                        <Param id="lut3Tr0" value="CY_SMARTIO_LUTTR_DU_OUT"/>
+                        <Param id="lut3Tr1" value="CY_SMARTIO_LUTTR_LUT3_OUT"/>
+                        <Param id="lut3Tr2" value="CY_SMARTIO_LUTTR_LUT3_OUT"/>
                         <Param id="lut4Opcode" value="CY_SMARTIO_LUTOPC_COMB"/>
                         <Param id="lut4Map" value="0"/>
                         <Param id="lut4Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
@@ -652,14 +652,14 @@
                         <Param id="lut7Tr0" value="CY_SMARTIO_LUTTR_INVALID"/>
                         <Param id="lut7Tr1" value="CY_SMARTIO_LUTTR_INVALID"/>
                         <Param id="lut7Tr2" value="CY_SMARTIO_LUTTR_INVALID"/>
-                        <Param id="duOpcode" value="CY_SMARTIO_DUOPC_INCR"/>
-                        <Param id="duSize" value="CY_SMARTIO_DUSIZE_8"/>
-                        <Param id="duTr0" value="CY_SMARTIO_DUTR_ZERO"/>
-                        <Param id="duTr1" value="CY_SMARTIO_DUTR_ZERO"/>
-                        <Param id="duTr2" value="CY_SMARTIO_DUTR_ZERO"/>
+                        <Param id="duOpcode" value="CY_SMARTIO_DUOPC_INCR_WRAP"/>
+                        <Param id="duSize" value="CY_SMARTIO_DUSIZE_6"/>
+                        <Param id="duTr0" value="CY_SMARTIO_DUTR_LUT1_OUT"/>
+                        <Param id="duTr1" value="CY_SMARTIO_DUTR_LUT2_OUT"/>
+                        <Param id="duTr2" value="CY_SMARTIO_DUTR_DU_OUT"/>
                         <Param id="duData0" value="CY_SMARTIO_DUDATA_ZERO"/>
-                        <Param id="duData1" value="CY_SMARTIO_DUDATA_ZERO"/>
-                        <Param id="duDataReg" value="0"/>
+                        <Param id="duData1" value="CY_SMARTIO_DUDATA_DATAREG"/>
+                        <Param id="duDataReg" value="63"/>
                         <Param id="inFlash" value="true"/>
                     </Personality>
                 </Block>
@@ -758,6 +758,7 @@
                     <Personality template="fll" version="4.0">
                         <Param id="configuration" value="auto"/>
                         <Param id="desiredFrequency" value="100.000"/>
+                        <Param id="enableOutputDivider" value="false"/>
                     </Personality>
                 </Block>
                 <Block location="srss[0].clock[0].hfclk[0]">

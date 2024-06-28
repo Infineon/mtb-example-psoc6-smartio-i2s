@@ -5,7 +5,7 @@
 *              I2S Master interface.
 *
 *******************************************************************************
-* Copyright 2020-2023, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2020-2024, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -47,7 +47,7 @@ static void I2S_Master_WriteUntilFull(stc_i2s_master_context_t *context);
 *                                 Global Variables
 *******************************************************************************/
 /** SPI Configuration */
-const cy_stc_scb_spi_config_t i2s_spi_config = 
+const cy_stc_scb_spi_config_t i2s_spi_config =
 {
     .spiMode = CY_SCB_SPI_MASTER,
     .subMode = CY_SCB_SPI_MOTOROLA,
@@ -73,7 +73,7 @@ const cy_stc_scb_spi_config_t i2s_spi_config =
 };
 
 /** Smart I/O Configuration */
-static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg0 = 
+static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg0 =
 {
     .tr0 = CY_SMARTIO_LUTTR_CHIP0,
     .tr1 = CY_SMARTIO_LUTTR_CHIP0,
@@ -81,7 +81,7 @@ static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg0 =
     .opcode = CY_SMARTIO_LUTOPC_COMB,
     .lutMap = 128,
 };
-static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg1 = 
+static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg1 =
 {
     .tr0 = CY_SMARTIO_LUTTR_CHIP3,
     .tr1 = CY_SMARTIO_LUTTR_CHIP3,
@@ -89,7 +89,7 @@ static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg1 =
     .opcode = CY_SMARTIO_LUTOPC_COMB,
     .lutMap = 128,
 };
-static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg2 = 
+static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg2 =
 {
     .tr0 = CY_SMARTIO_LUTTR_CHIP2,
     .tr1 = CY_SMARTIO_LUTTR_CHIP2,
@@ -97,7 +97,7 @@ static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg2 =
     .opcode = CY_SMARTIO_LUTOPC_GATED_OUT,
     .lutMap = 128,
 };
-static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg3 = 
+static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg3 =
 {
     .tr0 = CY_SMARTIO_LUTTR_DU_OUT,
     .tr1 = CY_SMARTIO_LUTTR_LUT3_OUT,
@@ -105,7 +105,7 @@ static const cy_stc_smartio_lutcfg_t i2s_smartio_lutCfg3 =
     .opcode = CY_SMARTIO_LUTOPC_GATED_OUT,
     .lutMap = 90,
 };
-static const cy_stc_smartio_ducfg_t i2s_smartio_duCfg = 
+static const cy_stc_smartio_ducfg_t i2s_smartio_duCfg =
 {
     .tr0 = CY_SMARTIO_DUTR_LUT1_OUT,
     .tr1 = CY_SMARTIO_DUTR_LUT2_OUT,
@@ -116,12 +116,12 @@ static const cy_stc_smartio_ducfg_t i2s_smartio_duCfg =
     .size = CY_SMARTIO_DUSIZE_6,
     .dataReg = 63,
 };
-static const cy_stc_smartio_config_t i2s_smartio_config = 
+static const cy_stc_smartio_config_t i2s_smartio_config =
 {
     .clkSrc = CY_SMARTIO_CLK_DIVACT,
     .bypassMask = 0u|CY_SMARTIO_CHANNEL1|0u|0u|CY_SMARTIO_CHANNEL4|CY_SMARTIO_CHANNEL5|CY_SMARTIO_CHANNEL6|CY_SMARTIO_CHANNEL7,
     .ioSyncEn = 0u|0u|0u|0u|0u|0u|0u|0u,
-    .chipSyncEn = 0u|0u|0u|0u|0u|0u|0u|0u,
+    .chipSyncEn = 0u|0u|CY_SMARTIO_CHANNEL2|CY_SMARTIO_CHANNEL3|0u|0u|0u|0u,
     .lutCfg0 = &i2s_smartio_lutCfg0,
     .lutCfg1 = &i2s_smartio_lutCfg1,
     .lutCfg2 = &i2s_smartio_lutCfg2,
